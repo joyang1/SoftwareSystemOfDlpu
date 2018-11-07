@@ -11,7 +11,7 @@ package com.javabean.url;
  * @author 挺
  */
 public class URL {
-     private static final String Local = "D:\\NetBeansIDE\\softlab_12\\web\\";
+     private static final String Local = "";
      //private static final String Local ="C:\\Program Files\\Apache Software Foundation\\Tomcat 7.0\\webapps\\softlab\\";
      public  static  String getUrl(){
          return Local;

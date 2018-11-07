@@ -1,5 +1,5 @@
-﻿# Host: localhost  (Version: 5.5.53)
-# Date: 2018-11-07 17:32:12
+﻿# Host:   (Version: 5.5.53)
+# Date: 2018-11-07 19:17:00
 # Generator: MySQL-Front 5.3  (Build 4.234)
 
 /*!40101 SET NAMES utf8 */;
@@ -54,6 +54,19 @@ CREATE TABLE `borrow_book` (
   `book_id` int(11) NOT NULL,
   PRIMARY KEY (`borrow_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
+# Structure for table "exam"
+#
+
+CREATE TABLE `exam` (
+  `exam_id` int(50) NOT NULL,
+  `exam_name` varchar(50) NOT NULL,
+  `exam_title` varchar(50) NOT NULL,
+  `exam_content` varchar(50) NOT NULL,
+  `exam_path` varchar(50) NOT NULL,
+  PRIMARY KEY (`exam_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "news"
@@ -195,6 +208,31 @@ CREATE TABLE `r_web` (
   `web_id` int(11) NOT NULL,
   `web_content` varchar(100) NOT NULL,
   PRIMARY KEY (`web_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# Structure for table "resources"
+#
+
+CREATE TABLE `resources` (
+  `r_id` int(11) NOT NULL AUTO_INCREMENT,
+  `r_title` varchar(20) NOT NULL,
+  `r_content` varchar(30) NOT NULL,
+  `r_path` varchar(100) NOT NULL,
+  `r_studentno` varchar(20) NOT NULL,
+  PRIMARY KEY (`r_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+#
+# Structure for table "score"
+#
+
+CREATE TABLE `score` (
+  `student_no` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `score` int(11) NOT NULL,
+  `score_id` int(50) NOT NULL,
+  PRIMARY KEY (`score_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
