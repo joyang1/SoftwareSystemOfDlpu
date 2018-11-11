@@ -48,7 +48,7 @@ public class PostServlet extends HttpServlet {
                 return;
             }
         }
-        if (pageNow > pageCount) {
+        if (pageNow > pageCount && pageCount != 0) {
             pageNow = pageCount;
         } else if (pageNow < 1) {
             pageNow = 1;
@@ -59,20 +59,23 @@ public class PostServlet extends HttpServlet {
         String[] time = new String[length];
         int startpost = length - 1 - PostofOnePage * (pageNow - 1); //每页开始帖子的序号
         int stoppost = length - PostofOnePage * pageNow; //每页结束帖子的序号
-        for (int i = startpost; i >= stoppost; i--) {
-            name[i] = p.getName(pid[i]);
-            content[i] = p.getContent(pid[i]);
-            owner[i] = p.getOwner(pid[i]);
-            time[i] = p.getTime(pid[i]);
-            //request.setAttribute("pid"+i, pid[i]);
-            request.setAttribute("name" + i, name[i]);
-            request.setAttribute("content" + i, content[i]);
-            request.setAttribute("owner" + i, owner[i]);
-            request.setAttribute("time" + i, time[i]);
-            if (stoppost < 0) {
-                stoppost = 0;
+        if(startpost >= 0){
+            for (int i = startpost; i >= stoppost; i--) {
+                name[i] = p.getName(pid[i]);
+                content[i] = p.getContent(pid[i]);
+                owner[i] = p.getOwner(pid[i]);
+                time[i] = p.getTime(pid[i]);
+                //request.setAttribute("pid"+i, pid[i]);
+                request.setAttribute("name" + i, name[i]);
+                request.setAttribute("content" + i, content[i]);
+                request.setAttribute("owner" + i, owner[i]);
+                request.setAttribute("time" + i, time[i]);
+                if (stoppost < 0) {
+                    stoppost = 0;
+                }
             }
         }
+
         request.setAttribute("length", length);
         request.setAttribute("startpost", startpost);
         request.setAttribute("stoppost", stoppost);

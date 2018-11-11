@@ -111,27 +111,33 @@
                     int pageNow = Integer.parseInt(request.getAttribute("pageNow").toString());
                     String[] title = new String[allnewscount];
                     String[] time = new String[allnewscount];
-                    for (int i = startnews; i >= stopnews; i--) {
-                        title[i] = request.getAttribute("title" + i).toString();
-                        time[i] = request.getAttribute("time" + i).toString();
-                        if (stopnews < 0) {
-                            stopnews = 0;
+                    if (startnews >= 0){
+                        for (int i = startnews; i >= stopnews; i--) {
+                            title[i] = request.getAttribute("title" + i).toString();
+                            time[i] = request.getAttribute("time" + i).toString();
+                            if (stopnews < 0) {
+                                stopnews = 0;
+                            }
                         }
                     }
+
                 %>
                 <%
-                    for (int i = startnews; i >= stopnews; i--) {
-                        out.println("<tr>");
-                        out.println("<td>");
-                        out.println("<a class='a' href='NewsShowServlet?id=" + i + " '>");
-                        out.print(title[i]);
-                        out.println("</a>");
-                        out.println("</td>");
-                        out.println("<td>");
-                        out.print(time[i]);
-                        out.println("</td>");
-                        out.println("</tr>");
+                    if (startnews >= 0){
+                        for (int i = startnews; i >= stopnews; i--) {
+                            out.println("<tr>");
+                            out.println("<td>");
+                            out.println("<a class='a' href='NewsShowServlet?id=" + i + " '>");
+                            out.print(title[i]);
+                            out.println("</a>");
+                            out.println("</td>");
+                            out.println("<td>");
+                            out.print(time[i]);
+                            out.println("</td>");
+                            out.println("</tr>");
+                        }
                     }
+
                 %>
                 <tr><td>
                         <%if (pageNow - 1 > 0) {%>

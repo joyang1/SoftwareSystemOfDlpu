@@ -46,7 +46,7 @@ public class NewsServlet extends HttpServlet {
             }
         }
         //防止有人有意攻击网站
-        if(pageNow > pageCount){
+        if(pageNow > pageCount && pageCount != 0){
             //将别人直接通过网站输入一些较大的数攻击，直接将该数赋值给最后一页
             pageNow = pageCount;
         }else if(pageNow < 1){
@@ -58,13 +58,15 @@ public class NewsServlet extends HttpServlet {
         id = gn.getId();
         int startnews = allnewscount-1-NewsofOnePage*(pageNow-1); //每页开始新闻的序号
         int stopnews =  allnewscount-NewsofOnePage*pageNow; //每页结束新闻的序号
-        for (int i = startnews; i >= stopnews; i--) {
-            title[i] = gn.getTitle(id[i]);
-            time[i] = gn.getTime(id[i]);
-            request.setAttribute("title" + i, title[i]);
-            request.setAttribute("time" + i, time[i]);
-            if(stopnews < 0){
-                stopnews = 0;
+        if(startnews >= 0){
+            for (int i = startnews; i >= stopnews; i--) {
+                title[i] = gn.getTitle(id[i]);
+                time[i] = gn.getTime(id[i]);
+                request.setAttribute("title" + i, title[i]);
+                request.setAttribute("time" + i, time[i]);
+                if(stopnews < 0){
+                    stopnews = 0;
+                }
             }
         }
         request.setAttribute("pageCount",  pageCount);
